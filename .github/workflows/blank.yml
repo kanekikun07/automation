@@ -36,6 +36,5 @@ jobs:
           echo test, and deploy your project.
 
       - name: Upload video6 at 20:00
-        if: ${{ github.event.schedule == '0 20 * * *' }}
         run: |
-          /usr/local/bin/yt-upload /home/user/shorts/video6.mp4 >> /home/user/logs/yt.log 2>&1
+          echo hi
