@@ -19,22 +19,39 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    env:
+      CONFIG: ${{ secrets.CONFIG }} # your rclone config contents as a secret
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
 
-      - name: Upload video6 at 20:00
+      - name: Install rclone
         run: |
-          echo hi
+          curl https://rclone.org/install.sh | sudo bash
+
+      - name: Write rclone config from env
+        run: |
+          mkdir -p ~/.config/rclone
+          echo "$CONFIG" > ~/.config/rclone/rclone.conf
+
+      - name: Install fuse (for rclone mount)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fuse
+
+      - name: Mount remote storage
+        run: |
+          mkdir -p ~/mnt/storage
+          nohup rclone mount gdrive: ~/mnt/storage --daemon
+        # Replace 'remote:path' with your remote name and path from your config
+
+      - name: Check mount contents
+        run: |
+          ls ~/mnt/storage
