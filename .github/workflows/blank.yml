@@ -42,9 +42,8 @@ jobs:
           echo "$CONFIG" > ~/.config/rclone/rclone.conf
           export RCLONE_CONFIG=~/.config/rclone/rclone.conf
           mkdir -p ~/mnt/storage
-          nohup rclone mount gdrive: ~/mnt/storage --daemon
-          sleep 10
-          cat nohup.out
+          rclone copy gdrive: ./output --progress
+#          nohup rclone mount gdrive: ~/mnt/storage --daemon
 
         env:
           CONFIG: ${{ secrets.CONFIG }}
