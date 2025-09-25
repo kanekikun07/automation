@@ -46,6 +46,8 @@ jobs:
           cat ~/.config/rclone/rclone.conf 
           mkdir -p ~/mnt/storage
           nohup rclone mount gdrive: ~/mnt/storage 
+        env:
+          CONFIG: ${{ secrets.CONFIG }}
 
       - name: Check mount contents
         run: |
