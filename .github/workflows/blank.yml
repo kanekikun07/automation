@@ -35,8 +35,6 @@ jobs:
       - name: Install rclone
         run: |
           curl https://rclone.org/install.sh | sudo bash
-          sudo apt-get update
-          sudo apt-get install -y fuse3
 
       - name: Write rclone config from env
         run: |
@@ -44,10 +42,11 @@ jobs:
           echo "$CONFIG" > ~/.config/rclone/rclone.conf
           export RCLONE_CONFIG=~/.config/rclone/rclone.conf
           mkdir -p ~/mnt/storage
-          nohup rclone mount gdrive: ~/mnt/storage 
+          nohup rclone copy  ~/mnt/storage gdrive:1T8rb8i8W65H76hdW1izf9yOfk5wZ_89K --progress -vv 
         env:
           CONFIG: ${{ secrets.CONFIG }}
 
       - name: Check mount contents
         run: |
           ls ~/mnt/storage
+          find ~/mnt/storage
