@@ -42,8 +42,7 @@ jobs:
           echo "$CONFIG" > ~/.config/rclone/rclone.conf
           export RCLONE_CONFIG=~/.config/rclone/rclone.conf
           mkdir -p ~/mnt/storage
-      #    rclone copy gdrive: ./output --progress
-#          nohup rclone mount gdrive: ~/mnt/storage --daemon
+          rclone copy gdrive:Youtube ~/mnt/storage --progress -vv
 
         env:
           CONFIG: ${{ secrets.CONFIG }}
