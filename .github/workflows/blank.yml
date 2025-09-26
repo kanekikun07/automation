@@ -44,14 +44,13 @@ jobs:
           mkdir -p ~/mnt/storage
           rclone copy gdrive:Youtube ~/mnt/storage --progress -vv
           cd ~/mnt/storage
-          ls
-
+          rclone serve http gdrive: --addr :8080 --vfs-cache-mode full &
+          echo "Waiting 5s for rclone server to start..."
+          sleep 5
+          wget http://localhost:8080/Backup/videos/www.instagram.com_reel_C--O93tPm6N_.mp4
         env:
           CONFIG: ${{ secrets.CONFIG }}
 
       - name: Check mount contents
         run: |
-          rclone serve http gdrive: --addr :8080 --vfs-cache-mode full &
-          echo "Waiting 5s for rclone server to start..."
-          sleep 5
-          wget http://localhost:8080/Backup/videos/www.instagram.com_reel_C--O93tPm6N_.mp4
+          rclone copy ~/mnt/storage gdrive:Youtube --progress -vv
