@@ -42,7 +42,7 @@ jobs:
           echo "$CONFIG" > ~/.config/rclone/rclone.conf
           export RCLONE_CONFIG=~/.config/rclone/rclone.conf
           mkdir -p ~/mnt/storage
-      #    rclone copy gdrive:Youtube ~/mnt/storage --progress -vv
+          rclone copy gdrive:Youtube ~/mnt/storage --progress -vv
           cd ~/mnt/storage
           rclone serve http gdrive: --addr :8080 --vfs-cache-mode full &
           echo "Waiting 5s for rclone server to start..."
