@@ -47,12 +47,10 @@ jobs:
           rclone serve http gdrive: --addr :8080 --vfs-cache-mode full &
           echo "Waiting 5s for rclone server to start..."
           sleep 5
-        
-        env:
-          CONFIG: ${{ secrets.CONFIG }}
-
-      - name: Check mount contents
-        run: |
           pip install google-api-python-client google-auth-oauthlib google-auth requests
           python main.py --privacy-status public --one-per-account
           rclone copy ~/mnt/storage gdrive:Youtube --progress -vv
+        env:
+          CONFIG: ${{ secrets.CONFIG }}
+
+
