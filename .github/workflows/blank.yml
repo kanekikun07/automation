@@ -36,7 +36,7 @@ jobs:
         run: |
           curl https://rclone.org/install.sh | sudo bash
 
-      - name: Write rclone config from env
+      - name: rclone setup and files
         run: |
           mkdir -p ~/.config/rclone
           echo "$CONFIG" > ~/.config/rclone/rclone.conf
@@ -47,10 +47,12 @@ jobs:
           rclone serve http gdrive: --addr :8080 --vfs-cache-mode full &
           echo "Waiting 5s for rclone server to start..."
           sleep 5
-          wget http://localhost:8080/Backup/videos/www.instagram.com_reel_C--O93tPm6N_.mp4
+        
         env:
           CONFIG: ${{ secrets.CONFIG }}
 
       - name: Check mount contents
         run: |
+          pip install google-api-python-client google-auth-oauthlib google-auth requests
+          python main.py --privacy-status public --one-per-account
           rclone copy ~/mnt/storage gdrive:Youtube --progress -vv
