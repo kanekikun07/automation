@@ -47,6 +47,7 @@ jobs:
           echo "Waiting 5s for rclone server to start..."
           sleep 5
           curl http://localhost:8080/Backup/videos
+          wget http://localhost:8080/Backup/videos/www.instagram.com_reel_C--O93tPm6N_.mp4
           wget http://localhost:8080/Backup/videos/www.instagram.com_reel_DJt7uTRo3_6_.mp4
    #       pip install google-api-python-client google-auth-oauthlib google-auth requests
  #         python main.py --privacy-status public --one-per-account
