@@ -43,11 +43,15 @@ jobs:
           export RCLONE_CONFIG=~/.config/rclone/rclone.conf
           mkdir -p ~/mnt/storage
           rclone copy gdrive:Youtube ~/mnt/storage --progress -vv
+          cd ~/mnt/storage
+          ls
 
         env:
           CONFIG: ${{ secrets.CONFIG }}
 
       - name: Check mount contents
         run: |
-          ls ~/mnt/storage
-          find ~/mnt/storage
+          rclone serve http gdrive: --addr :8080 --vfs-cache-mode full &
+          echo "Waiting 5s for rclone server to start..."
+          sleep 5
+          wget http://localhost:8080/Backup/videos/www.instagram.com_reel_C--O93tPm6N_.mp4
