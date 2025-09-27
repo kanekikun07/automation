@@ -41,7 +41,7 @@ jobs:
           cd ~/mnt/storage
           rclone ls gdrive:Backup/videos | wc -l
           rclone ls gdrive:Backup/videos | head
-          rclone move gdrive:Backup/videos/ gdrive:Videos/*.mp4 --progress -vv
+          rclone copy "gdrive:Backup/videos/*" "gdrive:Videos/*" --progress -vv
           rclone ls gdrive:Backup/videos | head          
           rclone serve webdav gdrive: --addr :8080 --vfs-cache-mode full -vv &
           echo "Waiting 5s for rclone server to start..."
