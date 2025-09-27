@@ -27,11 +27,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-
       - name: Install rclone
         run: |
           curl https://rclone.org/install.sh | sudo bash
@@ -42,20 +37,17 @@ jobs:
           echo "$CONFIG" > ~/.config/rclone/rclone.conf
           export RCLONE_CONFIG=~/.config/rclone/rclone.conf
           mkdir -p ~/mnt/storage
+          rclone copy gdrive:Youtube ~/mnt/storage --progress -vv
           cd ~/mnt/storage
           rclone serve http mega: --addr :8080 --vfs-cache-mode full -vv &
           echo "Waiting 5s for rclone server to start..."
           sleep 5
-          curl http://localhost:8080/Backup/videos
-          wget http://localhost:8080/Backup/videos/www.instagram.com_reel_C--O93tPm6N_.mp4
-          wget http://localhost:8080/Backup/videos/www.instagram.com_reel_DJt7uTRo3_6_.mp4
-   #       pip install google-api-python-client google-auth-oauthlib google-auth requests
- #         python main.py --privacy-status public --one-per-account
-  #        rclone copy ~/mnt/storage gdrive:Youtube --progress -vv
+          pip install google-api-python-client google-auth-oauthlib google-auth requests
+          python main.py --privacy-status public --one-per-account
+          rclone copy ~/mnt/storage gdrive:Youtube --progress -vv
         env:
           CONFIG: ${{ secrets.CONFIG }}
 
 
-     # rclone copy gdrive:Youtube ~/mnt/storage --progress -vv
-
+     
 
