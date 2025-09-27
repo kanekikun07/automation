@@ -41,10 +41,10 @@ jobs:
           cd ~/mnt/storage
 
           rclone move gdrive:Videos/1.mp4/ gdrive:Backup/videos/ --progress -vv
-          rclone ls gdrive:Backup/videos | head          
-          rclone serve webdav gdrive: --addr :8080 --vfs-cache-mode full -vv &
-          echo "Waiting 5s for rclone server to start..."
-          sleep 5
+          # rclone ls gdrive:Backup/videos | head          
+          # rclone serve webdav gdrive: --addr :8080 --vfs-cache-mode full -vv &
+          # echo "Waiting 5s for rclone server to start..."
+          # sleep 5
         env:
           CONFIG: ${{ secrets.CONFIG }}
           
