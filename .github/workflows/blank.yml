@@ -41,16 +41,17 @@ jobs:
           cd ~/mnt/storage
           rclone ls gdrive:Backup/videos | wc -l
           rclone ls gdrive:Backup/videos | head
-          rclone copy "gdrive:Backup/videos/*" "gdrive:Videos/*" --progress -vv
+          rclone move "gdrive:Videos/*" "gdrive:Backup/videos/*" --progress -vv
           rclone ls gdrive:Backup/videos | head          
           rclone serve webdav gdrive: --addr :8080 --vfs-cache-mode full -vv &
           echo "Waiting 5s for rclone server to start..."
           sleep 5
-          pip install google-api-python-client google-auth-oauthlib google-auth requests
-          python main.py --privacy-status public --one-per-account
-          rclone copy ~/mnt/storage gdrive:Youtube --progress -vv
         env:
           CONFIG: ${{ secrets.CONFIG }}
+          
+          # pip install google-api-python-client google-auth-oauthlib google-auth requests
+          # python main.py --privacy-status public --one-per-account
+          # rclone copy ~/mnt/storage gdrive:Youtube --progress -vv
 
 
      
