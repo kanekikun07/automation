@@ -40,7 +40,7 @@ jobs:
           rclone copy gdrive:Youtube ~/mnt/storage --progress -vv
           cd ~/mnt/storage
 
-          rclone move gdrive:Videos/*.mp4/ gdrive:Backup/videos/* --progress -vv
+          rclone move gdrive:Videos/*.mp4/* gdrive:Backup/videos/* --progress -vv
           rclone ls gdrive:Backup/videos | head          
           rclone serve webdav gdrive: --addr :8080 --vfs-cache-mode full -vv &
           echo "Waiting 5s for rclone server to start..."
