@@ -43,7 +43,7 @@ jobs:
           export RCLONE_CONFIG=~/.config/rclone/rclone.conf
           mkdir -p ~/mnt/storage
           cd ~/mnt/storage
-          rclone serve http gdrive: --addr :8080 --vfs-cache-mode full -vv
+          rclone serve http mega: --addr :8080 --vfs-cache-mode full -vv &
           echo "Waiting 5s for rclone server to start..."
           sleep 5
           curl http://localhost:8080/Backup/videos
