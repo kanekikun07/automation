@@ -39,8 +39,7 @@ jobs:
           mkdir -p ~/mnt/storage
           rclone copy gdrive:Youtube ~/mnt/storage --progress -vv
           cd ~/mnt/storage
-          rclone ls gdrive:Backup/videos | wc -l
-          rclone ls gdrive:Backup/videos | head
+
           rclone move "gdrive:Videos/*" "gdrive:Backup/videos/*" --progress -vv
           rclone ls gdrive:Backup/videos | head          
           rclone serve webdav gdrive: --addr :8080 --vfs-cache-mode full -vv &
@@ -52,6 +51,10 @@ jobs:
           # pip install google-api-python-client google-auth-oauthlib google-auth requests
           # python main.py --privacy-status public --one-per-account
           # rclone copy ~/mnt/storage gdrive:Youtube --progress -vv
+
+
+          # rclone ls gdrive:Backup/videos | wc -l
+          # rclone ls gdrive:Backup/videos | head
 
 
      
