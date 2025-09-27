@@ -40,9 +40,8 @@ jobs:
           rclone copy gdrive:Youtube ~/mnt/storage --progress -vv
           cd ~/mnt/storage
           rclone ls gdrive:Backup/videos | wc -l
-          rclone ls gdrive:Backup/videos | head
-          rclone move gdrive:Videos/1.mp4/ gdrive:Backup/videos/ --progress -vv
-
+          rclone lsd gdrive:Backup/videos
+          rclone ls gdrive:Backup/videos
         env:
           CONFIG: ${{ secrets.CONFIG }}
 
