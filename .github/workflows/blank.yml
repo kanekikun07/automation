@@ -7,13 +7,13 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   # Scheduled YouTube upload jobs
-#  schedule:
-#    - cron: '0 10 * * *'
-#    - cron: '0 12 * * *'
-#    - cron: '0 14 * * *'
-#    - cron: '0 16 * * *'
-#    - cron: '0 18 * * *'
-#    - cron: '0 20 * * *'
+  schedule:
+    - cron: '0 10 * * *'
+    - cron: '0 12 * * *'
+    - cron: '0 14 * * *'
+    - cron: '0 16 * * *'
+    - cron: '0 18 * * *'
+    - cron: '0 20 * * *'
 
 jobs:
   build:
@@ -42,7 +42,7 @@ jobs:
           rclone copy gdrive:Videos/videos.zip . --progress -vv
           unzip -o videos.zip -d .
           pip install google-api-python-client google-auth-oauthlib google-auth requests
-          python main.py --privacy-status public --one-per-account
+          python main.py --creds-dir ./creds --accounts ken --privacy-status public --one-per-account
           python main.py --creds-dir ./creds --accounts kunikazu --privacy-status public --one-per-account
           python main.py --creds-dir ./creds --accounts naman --privacy-status public --one-per-account
           rm -rf videos/*
