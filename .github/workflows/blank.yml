@@ -39,7 +39,7 @@ jobs:
           mkdir -p ~/mnt/storage
           rclone copy gdrive:Youtube ~/mnt/storage --progress -vv
           cd ~/mnt/storage
-          rclone copy gdrive:Videos/videos.zip videos.zip --progress -vv
+          rclone copy gdrive:Videos/videos.zip . --progress -vv
           ls
           unzip -o videos.zip -d .
           ls
