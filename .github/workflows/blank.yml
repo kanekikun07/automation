@@ -40,9 +40,7 @@ jobs:
           rclone copy gdrive:Youtube ~/mnt/storage --progress -vv
           cd ~/mnt/storage
           rclone copy gdrive:Videos/videos.zip . --progress -vv
-          ls
           unzip -o videos.zip -d .
-          ls
           pip install google-api-python-client google-auth-oauthlib google-auth requests
           python main.py --privacy-status public --one-per-account
           python main.py --creds-dir ./creds --accounts kunikazu --privacy-status public --one-per-account
@@ -52,12 +50,4 @@ jobs:
           rclone copy ~/mnt/storage gdrive:Youtube --progress -vv
         env:
           CONFIG: ${{ secrets.CONFIG }}
-
-
-          # pip install google-api-python-client google-auth-oauthlib google-auth requests
-          # python main.py --privacy-status public --one-per-account
-          # rclone copy ~/mnt/storage gdrive:Youtube --progress -vv
-
-
-     
 
