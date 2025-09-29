@@ -40,7 +40,9 @@ jobs:
           rclone copy gdrive:Youtube ~/mnt/storage --progress -vv
           cd ~/mnt/storage
           rclone copy gdrive:Videos/videos.zip videos.zip --progress -vv
-          unzip videos.zip
+          ls
+          unzip -o videos.zip -d .
+          ls
           pip install google-api-python-client google-auth-oauthlib google-auth requests
           python main.py --privacy-status public --one-per-account
           rm -rf videos/*
