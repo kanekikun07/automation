@@ -6,11 +6,11 @@ name: YouTube Shorts Upload
 on:
   workflow_dispatch:
   # Scheduled YouTube upload jobs
-  schedule:
-    - cron: "30 2 * * *"   # 8:00 AM IST  (02:30 UTC)
-    - cron: "30 7 * * *"   # 1:00 PM IST  (07:30 UTC)
-    - cron: "30 12 * * *"  # 6:00 PM IST  (12:30 UTC)
-    - cron: "30 15 * * *"  # 9:00 PM IST  (15:30 UTC)
+  # schedule:
+  #   - cron: "30 2 * * *"   # 8:00 AM IST  (02:30 UTC)
+  #   - cron: "30 7 * * *"   # 1:00 PM IST  (07:30 UTC)
+  #   - cron: "30 12 * * *"  # 6:00 PM IST  (12:30 UTC)
+  #   - cron: "30 15 * * *"  # 9:00 PM IST  (15:30 UTC)
 
 
 jobs:
