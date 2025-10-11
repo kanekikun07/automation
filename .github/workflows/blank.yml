@@ -31,6 +31,7 @@ jobs:
 
       - name: rclone setup and files
         run: |
+          sudo apt update && sudo apt install ffmpeg
           mkdir -p ~/.config/rclone
           echo "$CONFIG" > ~/.config/rclone/rclone.conf
           export RCLONE_CONFIG=~/.config/rclone/rclone.conf
