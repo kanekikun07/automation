@@ -44,10 +44,8 @@ jobs:
           python main.py --creds-dir ./creds --accounts kunikazu --privacy-status public --one-per-account --upscale
           python main.py --creds-dir ./creds --accounts naman --privacy-status public --one-per-account --upscale
           rm -rf videos/*
-          find tmp/
+          find .
           ls 
-          ls tmp/
-          rm -rf tmp/*
           rm videos.zip
           rclone copy ~/mnt/storage gdrive:Youtube --progress -vv
         env:
