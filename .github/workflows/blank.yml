@@ -40,9 +40,9 @@ jobs:
           rclone copy gdrive:Videos/videos.zip . --progress -vv
           unzip -o videos.zip -d .
           pip install google-api-python-client google-auth-oauthlib google-auth requests
-          python main.py --creds-dir ./creds --accounts ken --privacy-status public --one-per-account
-          python main.py --creds-dir ./creds --accounts kunikazu --privacy-status public --one-per-account
-          python main.py --creds-dir ./creds --accounts naman --privacy-status public --one-per-account
+          python main.py --creds-dir ./creds --accounts ken --privacy-status public --one-per-account --upscale
+          python main.py --creds-dir ./creds --accounts kunikazu --privacy-status public --one-per-account --upscale
+          python main.py --creds-dir ./creds --accounts naman --privacy-status public --one-per-account --upscale
           rm -rf videos/*
           find tmp/
           ls 
